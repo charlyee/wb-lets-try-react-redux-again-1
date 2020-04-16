@@ -22,3 +22,5 @@ interface AddItemToInventory {
   type: typeof ADD_ITEM_TO_INVENTORY,
   payload: Item // We need to pass a new Item that should be added to our store.
 }
+
+export type InventoryActionTypes = RemoveItemFromInventory | AddItemToInventory;
