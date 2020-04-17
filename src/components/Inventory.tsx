@@ -1,11 +1,9 @@
 import React from 'react';
-import store from '../store';
 import { RootState } from '../store';
 import { removeItemFromInventory, addItemToInventory } from '../store/inventory/action';
 import { Item } from '../store/inventory/types';
 import { Grid, Form, Input } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-// import { dispatch } from 'redux';
 
 export interface IInventoryProps {
   removeItemFromInventory: typeof removeItemFromInventory,
@@ -36,14 +34,21 @@ export class Inventory extends React.Component<IInventoryProps>
   {
     return (
       <Grid>
-        <Form onSubmit={this.newProduct}>
-          <Form.Field>
-            <label htmlFor="product-name">Enter Product Name</label>
-            <Input name="product-name" type='text' />
-          </Form.Field>
-          <Input type="submit" value="Add" />
-        </Form>
-        {this.props.items.map( element => (<div>{element.name}</div>) )}
+        <Grid.Row>
+          <Form onSubmit={this.newProduct}>
+            <Form.Field>
+              <label htmlFor="product-name">Enter Product Name</label>
+              <Input name="product-name" type='text' />
+            </Form.Field>
+            <Input type="submit" value="Add" />
+          </Form>
+        </Grid.Row>
+        <Grid.Row>
+          <h3>Products</h3>
+          <ul>
+            {this.props.items.map( element => (<li>{element.name}</li>) )}
+          </ul>
+        </Grid.Row>
       </Grid>
     );
   }
