@@ -1,6 +1,7 @@
 import React from 'react';
 // import { connect } from 'react-redux';
 import { Grid } from 'semantic-ui-react';
+import Inventory from './components/Inventory';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       </Grid.Row>
       <Grid.Row>
         {/* Products. */}
+        <Inventory />
       </Grid.Row>
       <Grid.Row>
         {/* Cart. */}
@@ -19,3 +21,8 @@ function App() {
 }
 
 export default App;
+
+// export default connect(
+//   {},
+//   {}
+// )( App );

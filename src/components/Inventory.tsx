@@ -17,9 +17,7 @@ export class Inventory extends React.Component<IInventoryProps>
   {
     return (
       <Grid>
-        { this.props.items.map( item => {
-          return ( <p>Item</p> );
-        } ) }
+        {this.props.items.map( ( element, key ) => (<div>{element.name}</div>) )}
       </Grid>
     );
   }
