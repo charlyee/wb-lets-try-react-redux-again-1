@@ -2,7 +2,7 @@ import React from 'react';
 import { RootState } from '../store';
 import { removeItemFromInventory, addItemToInventory } from '../store/inventory/action';
 import { Item } from '../store/inventory/types';
-import { Grid, Form, Input } from 'semantic-ui-react';
+import { Grid, Form, Input, Button, Card } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 
 export interface IInventoryProps {
@@ -30,6 +30,10 @@ export class Inventory extends React.Component<IInventoryProps>
       name: formFieldValue
     } );
   }
+  deleteProduct = ( id: number ) => {
+    // Remove this product by the ID!
+    this.props.removeItemFromInventory( id );
+  }
   render ()
   {
     return (
@@ -43,12 +47,23 @@ export class Inventory extends React.Component<IInventoryProps>
             <Input type="submit" value="Add" />
           </Form>
         </Grid.Row>
-        <Grid.Row>
-          <h3>Products</h3>
-          <ul>
-            {this.props.items.map( element => (<li>{element.name}</li>) )}
-          </ul>
-        </Grid.Row>
+        <h3>Products</h3>
+        <ul>
+          {/* Loop through our REDUX product items... */}
+          { this.props.items.map( element => (
+              <li>
+                {element.name}
+                <Button
+                  size='mini'
+                  color='red'
+                  onClick={event => {
+                    this.deleteProduct( element.id )
+                }}>
+                  &times;
+                </Button>
+              </li>
+          ) ) }
+        </ul>
       </Grid>
     );
   }
